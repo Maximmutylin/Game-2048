@@ -54,6 +54,8 @@ class GameManager {
     init() {
         this.board = new Board()
         this.board.init()
+        this.board.generateNewCell();
+        this.board.addColours();
 		document.addEventListener('keyup', clickControl);
     }
     checkIsGameOver() {
@@ -73,7 +75,7 @@ class Board {
         for (let i = 0; i < this.widthBoard * this.widthBoard; i++) {
             const square = document.createElement('div');
             square.innerHTML = '';
-            square.className = 'number';
+            square.className = 'cell';
             fragment.appendChild(square);
             this.squares.push(square);
         }
@@ -81,11 +83,22 @@ class Board {
     }
     
     generateNewCell() {
-        console.log('generateNewCell')
+        const randomNumber = Math.floor(Math.random() * this.squares.length);
+        if (this.squares[randomNumber].innerHTML === '') {
+            this.squares[randomNumber].innerHTML = 2;     
+        } else {
+            // Здесь я так понял нужно вызвать этот же метод но с привязкой к экземпляру класса board, но не пойму как т.к он в другом классе и еще в методе
+            // Пробовал привязать контекст через call, но не сработало
+            // Думал еще вынести экземпляр board из метода init в глобальный контекст и запомнить в переменную, но не просто так он же создан в классе
+            // Или создать новый экземпляр класса board тут но тогда наверное тут не будет предведущих методов которые взаимодействуют с прошлым экземпляром
+            // Так что не до конца понятно как вызвать метод внутри него же
+        }
     }
-    
+
     addColours() {
-        console.log('addColours')
+        this.squares.forEach(e => {
+            e.style.backgroundColor = colorCell[Math.trunc(Math.sqrt(e.innerHTML))];
+        })
     }
 }
 
@@ -103,7 +116,6 @@ class Cell {
     getNewElement() {
         console.log('getNewElement');
     }
-
 }
 
 const start = new GameManager();
