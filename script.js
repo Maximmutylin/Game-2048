@@ -1,16 +1,16 @@
-'use strcit'
+'use strict'
 
 function clickControl(event) {
     if(event.key === 'ArrowUp'){
-        console.log('Вверх')
+        console.log('Вверх');
     }else if(event.key === 'ArrowDown') {
-        console.log('Вниз')
+        console.log('Вниз');
     }else if(event.key === 'ArrowRight') {
-        console.log('Вправо')   
+        console.log('Вправо') ;  
     }else if(event.key === 'ArrowLeft') {
-        console.log('Влево')
+        console.log('Влево');
     } else {
-        console.log('Other')
+        console.log('Other');
     }
 }
 
@@ -40,15 +40,15 @@ class GameManager {
         this.test = null;
     }
     init() {
-        this.board = new Board()
-        this.test = new Cell() //Потом удалить т.к без создания экземпляра класса не работает импорт
-        this.board.init()
+        this.board = new Board();
+        this.test = new Cell(); //Потом удалить т.к без создания экземпляра класса не работает импорт
+        this.board.init();
         this.board.generateNewCell();
         this.board.addColours();
 		document.addEventListener('keyup', clickControl);
     }
     checkIsGameOver() {
-        console.log('checkIsGameOver')
+        console.log('checkIsGameOver');
     }
 }
 

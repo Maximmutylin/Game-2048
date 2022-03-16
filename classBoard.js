@@ -1,3 +1,5 @@
+'use strict'
+
 import { colorCell } from './script.js'
 
 export class Board {

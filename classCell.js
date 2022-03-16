@@ -1,3 +1,5 @@
+'use strict'
+
 export class Cell {
     constructor() {
         this.value = '';
