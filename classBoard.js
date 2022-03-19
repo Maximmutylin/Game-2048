@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-import { colorCell } from './script.js'
+import { colorCell } from './script.js';
 
 export class Board {
     constructor() {
@@ -23,9 +23,10 @@ export class Board {
     
     generateNewCell() {
         const randomNumber = Math.floor(Math.random() * this.squares.length);
+
         if (this.squares[randomNumber].innerHTML === '') {
             this.squares[randomNumber].innerHTML = 2;     
-        } else {
+        }else {
             this.generateNewCell();
         }
     }

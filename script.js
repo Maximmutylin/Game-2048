@@ -1,7 +1,10 @@
-'use strict'
+'use strict';
+
+// import { Cell } from './classCell.js';
+import { Board } from './classBoard.js';
 
 function clickControl(event) {
-    if(event.key === 'ArrowUp'){
+    if(event.key === 'ArrowUp') {
         console.log('Вверх');
     }else if(event.key === 'ArrowDown') {
         console.log('Вниз');
@@ -9,7 +12,7 @@ function clickControl(event) {
         console.log('Вправо') ;  
     }else if(event.key === 'ArrowLeft') {
         console.log('Влево');
-    } else {
+    }else {
         console.log('Other');
     }
 }
@@ -34,14 +37,12 @@ export const  colorCell = [
 
 class GameManager {
     constructor() {
-        this.isGameOver = false;
+        this.isGameOver = false; 
         this.score = 0;
         this.board = null;
-        this.test = null;
     }
     init() {
         this.board = new Board();
-        this.test = new Cell(); //Потом удалить т.к без создания экземпляра класса не работает импорт
         this.board.init();
         this.board.generateNewCell();
         this.board.addColours();
@@ -51,9 +52,6 @@ class GameManager {
         console.log('checkIsGameOver');
     }
 }
-
-import { Cell } from './classCell.js'
-import { Board } from './classBoard.js'
 
 const start = new GameManager();
 start.init();
