@@ -4,15 +4,15 @@
 import { Board } from './classBoard.js';
 
 function clickControl(event) {
-    if(event.key === 'ArrowUp') {
+    if (event.key === 'ArrowUp') {
         console.log('Вверх');
-    }else if(event.key === 'ArrowDown') {
+    } else if (event.key === 'ArrowDown') {
         console.log('Вниз');
-    }else if(event.key === 'ArrowRight') {
-        console.log('Вправо') ;  
-    }else if(event.key === 'ArrowLeft') {
+    } else if (event.key === 'ArrowRight') {
+        console.log('Вправо');  
+    } else if (event.key === 'ArrowLeft') {
         console.log('Влево');
-    }else {
+    } else {
         console.log('Other');
     }
 }
