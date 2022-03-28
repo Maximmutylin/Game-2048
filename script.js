@@ -1,27 +1,13 @@
 'use strict';
 
-// import { Cell } from './classCell.js';
-import { Board } from './classBoard.js';
-
-function clickControl(event) {
-    if (event.key === 'ArrowUp') {
-        console.log('Вверх');
-    } else if (event.key === 'ArrowDown') {
-        console.log('Вниз');
-    } else if (event.key === 'ArrowRight') {
-        console.log('Вправо');  
-    } else if (event.key === 'ArrowLeft') {
-        console.log('Влево');
-    } else {
-        console.log('Other');
-    }
-}
+// import { Cell } from './cell.js';
+import { Board } from './board.js';
 
 const scoreDisplay =  document.querySelector('.score');
 const resultDisplay = document.querySelector('.result');
 
 export const  colorCell = [
-    '#afa192',
+    '#C5C6BE',
     '#eee4da',
     '#ede0c8',
     '#f2b179',
@@ -45,11 +31,32 @@ class GameManager {
         this.board = new Board();
         this.board.init();
         this.board.generateNewCell();
-        this.board.addColours();
-		document.addEventListener('keyup', clickControl);
+        this.board.generateNewCell();
+		document.addEventListener('keyup', this.clickControl.bind(this));
     }
+
     checkIsGameOver() {
         console.log('checkIsGameOver');
+    }
+
+    clickControl(event) {
+        if (event.key === 'ArrowUp') {
+            this.board.combineColumn();
+            this.board.movingColumn('up');
+            this.board.generateNewCell(); 
+        } else if (event.key === 'ArrowDown') {
+            this.board.combineColumn();
+            this.board.movingColumn('down');
+            this.board.generateNewCell();
+        } else if (event.key === 'ArrowRight') {
+            this.board.combineRow();
+            this.board.movingRow('right');
+            this.board.generateNewCell();
+        } else if (event.key === 'ArrowLeft') {
+            this.board.combineRow();
+            this.board.movingRow('left');
+            this.board.generateNewCell();
+        }
     }
 }
 

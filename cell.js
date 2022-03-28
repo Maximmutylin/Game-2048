@@ -1,5 +1,5 @@
 'use strict';
-
+import { colorCell } from './script.js';
 export class Cell {
     constructor() {
         this.value = '';
@@ -8,12 +8,23 @@ export class Cell {
     getValue() {
         return this.value;
     }
-    setValue() {
-        console.log('setValue');
+    setValue(value) {
+        this.value = value;
+        this.dom.textContent = this.value;
+        this.dom.style.backgroundColor = colorCell[Math.trunc(Math.sqrt(value))]; 
     }
     getNewElement() {
         console.log('getNewElement');
-        
+        if (this.dom !== null) {
+            throw new Error('Cell уже существует')
+        }
+        const square = document.createElement('div');
+
+        square.innerHTML = '';
+        square.className = 'cell';
+
+        this.dom = square;
+        return square;
     }
 }
 
