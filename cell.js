@@ -5,14 +5,17 @@ export class Cell {
         this.value = '';
         this.dom = null;
     }
+    
     getValue() {
         return this.value;
     }
+
     setValue(value) {
         this.value = value;
         this.dom.textContent = this.value;
         this.dom.style.backgroundColor = colorCell[Math.trunc(Math.sqrt(value))]; 
     }
+
     getNewElement() {
         console.log('getNewElement');
         if (this.dom !== null) {

@@ -53,10 +53,10 @@ export class Board {
             column.push(this.squares[indexColumn + this.widthBoard * i ].getValue());
         }
     
-        let filteredColumn = column.filter(num => num);
-        let emptyCellInColumnSize = this.widthBoard - filteredColumn.length;
+        const filteredColumn = column.filter(num => num);
+        const emptyCellInColumnSize = this.widthBoard - filteredColumn.length;
     
-        let newColumn = this.makeNewSequence(filteredColumn, emptyCellInColumnSize, isUp);
+        const newColumn = this.makeNewSequence(filteredColumn, emptyCellInColumnSize, isUp);
     
         newColumn.forEach((value, i) => {
             this.squares[indexColumn + (this.widthBoard * i)].setValue(value);
@@ -69,10 +69,10 @@ export class Board {
             row.push(this.squares[rowIndex + i].getValue());
         }
     
-        let filteredRow = row.filter(num => num);
-        let emptyCellInRowSize = this.widthBoard - filteredRow.length;
+        const filteredRow = row.filter(num => num);
+        const emptyCellInRowSize = this.widthBoard - filteredRow.length;
     
-        let newRow = this.makeNewSequence(filteredRow, emptyCellInRowSize, isLeft);
+        const newRow = this.makeNewSequence(filteredRow, emptyCellInRowSize, isLeft);
     
         newRow.forEach((value, i) => {
             this.squares[rowIndex + i].setValue(value);
@@ -80,7 +80,7 @@ export class Board {
     }
 
     makeNewSequence(numbers, emptySequensSize, isReverse) {
-        let emptySequence = Array(emptySequensSize).fill('');
+        const emptySequence = Array(emptySequensSize).fill('');
     
         return isReverse ? numbers.concat(emptySequence) : emptySequence.concat(numbers);
     }
@@ -88,17 +88,18 @@ export class Board {
     combineColumn() {
         for (let i = 15; i >= 4; i--) {
             if ((this.squares[i].getValue() === this.squares[i - this.widthBoard].getValue()) && this.squares[i].getValue() !== '') {
-                let combinedTotal = parseInt(this.squares[i].getValue()) + parseInt(this.squares[i - this.widthBoard].getValue());
+                const combinedTotal = parseInt(this.squares[i].getValue()) + parseInt(this.squares[i - this.widthBoard].getValue());
                 
                 this.squares[i].setValue(combinedTotal);
                 this.squares[i - this.widthBoard].setValue('');
             }
         }
     }
+    
     combineRow() {
         for (let i = 15; i > 1; i--) {
             if ((this.squares[i].getValue() === this.squares[i - 1].getValue()) && this.squares[i].getValue() !== '' && i % 4 !== 0) {
-                let combinedTotal = parseInt(this.squares[i].getValue()) + parseInt(this.squares[i - 1].getValue());
+                const combinedTotal = parseInt(this.squares[i].getValue()) + parseInt(this.squares[i - 1].getValue());
                 
                 this.squares[i].setValue(combinedTotal);
                 this.squares[i - 1].setValue('');
