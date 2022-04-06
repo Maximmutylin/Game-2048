@@ -1,5 +1,7 @@
 'use strict';
+
 import { colorCell } from './script.js';
+
 export class Cell {
     constructor() {
         this.value = '';
@@ -17,7 +19,6 @@ export class Cell {
     }
 
     getNewElement() {
-        console.log('getNewElement');
         if (this.dom !== null) {
             throw new Error('Cell уже существует')
         }

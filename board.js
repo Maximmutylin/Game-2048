@@ -1,12 +1,13 @@
 'use strict';
 
-
 import { Cell } from './cell.js';
+import { scoreDisplay } from './script.js';
 export class Board {
     constructor() {
         this.widthBoard = 4;
         this.squares = [];
         this.wrapper = document.querySelector('.grid');
+        this.score = 0;
     }
 
     init() {
@@ -23,13 +24,15 @@ export class Board {
     }
     
     generateNewCell() {
-        const randomNumber = Math.floor(Math.random() * this.squares.length);
-
+        setTimeout(() => {
+            const randomNumber = Math.floor(Math.random() * this.squares.length);
         if (this.squares[randomNumber].getValue() === '') {
             this.squares[randomNumber].setValue(2);     
         } else {
             this.generateNewCell();
         }
+        }, 30)
+        
     }
 
     movingColumn(direction) {
@@ -43,6 +46,7 @@ export class Board {
             if (i % 4 === 0) {
                 this.fillRow(i, direction === 'left');
             }
+            
         }
     }
 
@@ -92,18 +96,26 @@ export class Board {
                 
                 this.squares[i].setValue(combinedTotal);
                 this.squares[i - this.widthBoard].setValue('');
+                
+                this.score += combinedTotal;
+                scoreDisplay.innerHTML = this.score;
             }
         }
     }
     
     combineRow() {
-        for (let i = 15; i > 1; i--) {
+        for (let i = 15; i > 0; i--) {
             if ((this.squares[i].getValue() === this.squares[i - 1].getValue()) && this.squares[i].getValue() !== '' && i % 4 !== 0) {
                 const combinedTotal = parseInt(this.squares[i].getValue()) + parseInt(this.squares[i - 1].getValue());
                 
                 this.squares[i].setValue(combinedTotal);
                 this.squares[i - 1].setValue('');
+
+                this.score += combinedTotal;
+                scoreDisplay.innerHTML = this.score;
             }
         }
     }
+
+    
 }
