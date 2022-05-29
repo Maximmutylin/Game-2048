@@ -30,6 +30,7 @@ header > div {
     color: #f9f6f2;
     font-weight: bold;
     font-size: 22px;
+    cursor: pointer;
 }
 .scores-container {
     display: flex;
@@ -77,6 +78,13 @@ header > div {
     margin: 2vmin 2vmin 0 0;
     background-color: #C5C6BE;
     float: left;
+    font-size: 6vmin;
+    color: #776e65;
+    text-align: center;
+    font-weight: bold;
+    line-height: 15vmin;
+    transition: all .1s;
+    
 }
 /* add left margin to first childs of rows */
 .cell:nth-child(4n+1) {
